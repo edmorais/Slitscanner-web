@@ -1,0 +1,148 @@
+<div class="room">
+<main class="app" id="app">
+
+  <div class="mon-col">
+  <section class="monitor" id="monitor" aria-label="Monitor" data-help="monitor">
+    <div class="bezel">
+      <div class="screen-host" id="screen-host">
+      <div class="screen" id="screen-wrap">
+        <canvas id="screen" aria-label="Slit-scan picture" role="img"></canvas>
+        <div class="glass"></div>
+        <div class="osd" id="osd">
+          <div class="osd-tl" id="osd-tl"></div>
+          <div class="osd-tr" id="osd-tr"></div>
+          <div class="osd-bl" id="osd-bl"></div>
+        </div>
+        <div class="osd-msg" id="osd-msg" hidden></div>
+        <div class="vf" id="vf" data-help="viewfinder" title="Viewfinder: drag to place the slit">
+          <canvas id="vfc"></canvas><span class="vf-lbl">VF</span>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="monitor-foot">
+      <div class="badge"><span class="wordmark">Slitscanner</span><span class="model">SSM-2026 &nbsp;SLIT-SCAN MONITOR</span></div>
+      <div class="mon-right">
+        <div class="mon-ctl" data-help="output" role="group" aria-label="Output format">
+          <span class="cap">OUTPUT</span>
+          <button class="key small dark" id="k-out0" data-tip="Output 960 × 720 (4:3)" aria-pressed="false"><i class="led"></i>4:3</button>
+          <button class="key small dark" id="k-out1" data-tip="Output 1280 × 720 (16:9)" aria-pressed="true"><i class="led"></i>16:9</button>
+          <button class="key small dark" id="k-out2" data-tip="Output 1440 × 720 (2:1)" aria-pressed="false"><i class="led"></i>2:1</button>
+        </div>
+        <div class="leds"><span><i class="lamp tally" id="tally"></i>TALLY</span><span><i class="lamp power on"></i>POWER</span></div>
+      </div>
+    </div>
+  </section>
+  <div class="stand" aria-hidden="true"></div>
+  </div>
+
+  <section class="deck" id="deck" aria-label="Slitscanner controls">
+    <div class="deck-top">
+      <div class="brand">
+        <span class="wordmark">Slitscanner</span>
+        <span class="slits" aria-hidden="true"><i style="opacity:.25"></i><i style="opacity:.4"></i><i style="opacity:.6"></i><i></i><i style="opacity:.6"></i><i style="opacity:.4"></i><i style="opacity:.25"></i></span>
+        <span class="model">SSD-2026 &nbsp;SLIT-SCAN DECK</span>
+      </div>
+      <button class="cassette" id="cassette" data-tip="Load a video file (L), or drop one on the page" data-help="tape">
+        <span class="slot"><span class="fillbar" id="tape-fill"></span><span class="headpin" id="tape-head"></span></span>
+        <span class="clbl"><span id="tape-name">INSERT VIDEO FILE</span><span id="tape-time">DROP OR CLICK</span></span>
+      </button>
+      <div class="tray" data-help="snap">
+        <div class="ctl"><button class="key go" id="k-snap" data-tip="Save the picture as a PNG (S)"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="4" width="13" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="8.5" r="2.4" fill="currentColor"/><rect x="5" y="2.2" width="6" height="2" fill="currentColor"/></svg></button><span class="lbl">SNAP</span></div>
+        <div class="tray-win" data-tip="Snapshots download as numbered PNGs">
+          <span class="t1">SNAPSHOT &rarr; DOWNLOADS</span>
+          <span class="t2" id="tray-next">slitscan_0001.png</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grp" data-help="source">
+      <div class="grp-keys even" style="--n:4">
+        <div class="ctl"><button class="key dark rec" id="k-cam" data-tip="Scan the camera (C)" aria-pressed="false"><i class="led"></i><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="4.6" fill="currentColor"/></svg></button><span class="lbl">CAMERA</span></div>
+        <div class="ctl"><button class="key dark" id="k-file" data-tip="Scan a video file from your computer (L)" aria-pressed="false"><i class="led"></i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5 14 9.5H2z" fill="currentColor"/><rect x="2" y="11" width="12" height="2.4" fill="currentColor"/></svg></button><span class="lbl">FILE</span></div>
+        <div class="ctl"><button class="key dark" id="k-test" data-tip="Scan the moving test card (T)" aria-pressed="true"><i class="led"></i><svg viewBox="0 0 16 16" aria-hidden="true"><g fill="currentColor"><rect x="1" y="3" width="2.4" height="10"/><rect x="3.9" y="3" width="2.4" height="10" opacity=".8"/><rect x="6.8" y="3" width="2.4" height="10" opacity=".62"/><rect x="9.7" y="3" width="2.4" height="10" opacity=".45"/><rect x="12.6" y="3" width="2.4" height="10" opacity=".28"/></g></svg></button><span class="lbl">TEST SIGNAL</span></div>
+        <div class="ctl"><button class="key dark" id="k-setup" data-tip="Source setup: camera, resolution, mirror, image (Tab)" aria-pressed="false"><i class="led"></i><svg viewBox="0 0 16 16" aria-hidden="true"><g fill="currentColor"><rect x="3" y="2" width="1.6" height="12"/><rect x="7.2" y="2" width="1.6" height="12"/><rect x="11.4" y="2" width="1.6" height="12"/><rect x="1.6" y="9" width="4.4" height="2.6" rx=".6"/><rect x="5.8" y="4" width="4.4" height="2.6" rx=".6"/><rect x="10" y="7" width="4.4" height="2.6" rx=".6"/></g></svg></button><span class="lbl">SETUP</span></div>
+      </div>
+      <div class="gt">SOURCE</div>
+    </div>
+
+    <div class="vfd" id="vfd-box" data-help="vfd" aria-live="off">
+      <div class="vfd-ann"><span id="an-cam">CAM</span><span id="an-file">FILE</span><span id="an-test">TEST</span><span id="an-still">STILL</span><span id="an-scroll">SCROLL</span><span id="an-row">ROW</span><span id="an-mir">MIR</span></div>
+      <div class="vfd-tc"><span id="tc">00:00:00:00</span><span class="vfd-side"><small id="vfd-speed">1:1</small><small id="vfd-fill">FILL 0%</small></span></div>
+      <div class="vfd-st" id="vfd-st">SLITSCANNER READY</div>
+    </div>
+
+    <div class="grp" data-help="transport">
+      <div class="grp-keys even" style="--n:3">
+        <div class="ctl"><button class="key dark" id="k-still" data-tip="Freeze the scan; pauses a video file (Space)" aria-pressed="false"><i class="led"></i><svg viewBox="0 0 16 16" aria-hidden="true"><g fill="currentColor"><rect x="3.5" y="3" width="3" height="10"/><rect x="9.5" y="3" width="3" height="10"/></g></svg></button><span class="lbl">STILL</span></div>
+        <div class="ctl"><div class="pair">
+          <button class="key dark" id="k-slower" data-tip="Slower: one slit every more frames (Page Down)"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 4v8L2 8zM14.5 4v8l-6-4z" fill="currentColor"/></svg></button>
+          <button class="key dark" id="k-faster" data-tip="Faster: one slit every fewer frames (Page Up)"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 4v8l6-4zM1.5 4v8l6-4z" fill="currentColor"/></svg></button>
+        </div><span class="lbl" id="speed-lbl">SPEED 1:1</span></div>
+        <div class="ctl"><button class="key dark" id="k-clear" data-tip="Wipe the picture and reset the timecode (R)"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button><span class="lbl">CLEAR</span></div>
+      </div>
+      <div class="gt">TRANSPORT</div>
+    </div>
+
+    <div class="grp" id="g-tape" data-help="tapekeys" hidden>
+      <div class="grp-keys even" style="--n:4">
+        <div class="ctl"><button class="key dark" id="k-rew" data-tip="Back to the start of the file (Home)"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h2v10H2zM14 3v10L5 8z" fill="currentColor"/></svg></button><span class="lbl">REWIND</span></div>
+        <div class="ctl"><div class="pair">
+          <button class="key dark" id="k-fback" data-tip="One frame back, and lay down its slit (,)"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3h2v10H3zM13 3v10L6 8z" fill="currentColor"/></svg></button>
+          <button class="key dark" id="k-ffwd" data-tip="One frame on, and lay down its slit (.)"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11 3h2v10h-2zM3 3v10l7-5z" fill="currentColor"/></svg></button>
+        </div><span class="lbl">FRAME</span></div>
+        <div class="ctl"><button class="key dark" id="k-rate" data-tip="Playback rate of the file (P)"><span id="rate-cap">1×</span></button><span class="lbl">RATE</span></div>
+        <div class="ctl"><button class="key dark" id="k-loop" data-tip="Loop the file; off stops at the end" aria-pressed="true"><i class="led"></i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 5.5h7a2.5 2.5 0 0 1 0 5H5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6.5 8 3.5 10.5 6.5 13z" fill="currentColor"/></svg></button><span class="lbl">LOOP</span></div>
+      </div>
+      <div class="gt">TAPE</div>
+    </div>
+
+    <div class="grp" data-help="scan">
+      <div class="grp-keys even" style="--n:3">
+        <div class="ctl"><button class="key wide" id="k-mode" data-tip="Sweep a head over a still picture, or move the picture (M)"><span id="mode-cap">STATIC</span></button><span class="lbl">MODE</span></div>
+        <div class="ctl"><button class="key" id="k-dir" data-tip="Which way the picture goes (D)"><svg id="dir-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M14 8H3M7 3.5 2.5 8 7 12.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="lbl">DIRECTION</span></div>
+        <div class="ctl"><button class="key" id="k-axis" data-tip="Read a column or a row of the source (A)"><svg id="axis-ico" viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="11" rx="1" fill="none" stroke="currentColor" stroke-width="1.3"/><rect id="axis-bar" x="7" y="2.5" width="2" height="11" fill="currentColor"/></svg></button><span class="lbl" id="axis-lbl">SLIT COL</span></div>
+        <div class="ctl"><button class="key" id="k-width" data-tip="Copy 1, 2, 4 or 8 lines per step (W)"><span id="width-cap">×1</span></button><span class="lbl">WIDTH</span></div>
+        <div class="ctl span2"><div class="pair">
+          <button class="key" id="k-posl" data-tip="Move the slit (← ↑; Shift for bigger steps)"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10.5 3.5 5.5 8l5 4.5z" fill="currentColor"/></svg></button>
+          <button class="key" id="k-posr" data-tip="Move the slit (→ ↓; Shift for bigger steps)"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.5 10.5 8l-5 4.5z" fill="currentColor"/></svg></button>
+        </div><span class="lbl" id="pos-lbl">POSITION 50%</span></div>
+      </div>
+      <div class="gt">SCAN</div>
+    </div>
+
+    <div class="grp" data-help="display">
+      <div class="grp-keys even" style="--n:5">
+        <div class="ctl"><button class="key" id="k-vf" data-tip="Live source inset with the slit drawn on it (V)" aria-pressed="true"><i class="led"></i>VF</button><span class="lbl">VIEWFINDER</span></div>
+        <div class="ctl"><button class="key" id="k-osd" data-tip="On-screen display (O)" aria-pressed="true"><i class="led"></i>OSD</button><span class="lbl">DISPLAY</span></div>
+        <div class="ctl"><button class="key" id="k-full" data-tip="Full screen (F)" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button><span class="lbl">FULL</span></div>
+        <div class="ctl"><button class="key" id="k-clean" data-tip="The picture alone, for projecting (H; Esc returns)"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="3" width="13" height="10" fill="currentColor"/></svg></button><span class="lbl">CLEAN</span></div>
+        <div class="ctl"><button class="key" id="k-help" data-tip="Guided tour (F1 or ?)" style="font-size:16px">?</button><span class="lbl">HELP</span></div>
+      </div>
+      <div class="gt">DISPLAY</div>
+    </div>
+
+    <div class="panel" id="panel" data-help="setup" hidden>
+      <div class="panel-head"><span>SETUP</span><span class="pname" id="panel-name">TEST SIGNAL</span><span class="rule"></span></div>
+      <div class="panel-body" id="panel-body"></div>
+    </div>
+  </section>
+</main>
+</div>
+
+<input type="file" id="file" accept="video/*,.mp4,.webm,.mov,.m4v,.mkv,.ogv" class="vh" tabindex="-1" aria-hidden="true">
+<div class="media-pool" id="media-pool" aria-hidden="true"></div>
+
+<div class="help" id="help" hidden>
+  <svg class="help-dim" id="help-dim" aria-hidden="true">
+    <defs><mask id="help-mask" maskUnits="userSpaceOnUse"><rect x="0" y="0" width="100%" height="100%" fill="#fff"/><g id="help-holes"></g></mask></defs>
+    <rect x="0" y="0" width="100%" height="100%" fill="rgba(3,4,5,.72)" mask="url(#help-mask)"/>
+  </svg>
+  <div id="help-rings"></div>
+  <section class="help-panel at-bottom" id="help-panel" role="dialog" aria-labelledby="help-title">
+    <div class="help-head"><span class="help-topic" id="help-topic"></span><button class="help-x" id="help-x" aria-label="Close">×</button></div>
+    <h2 id="help-title"></h2>
+    <div class="help-body" id="help-body"></div>
+    <div class="help-foot"><div class="dots" id="help-dots"></div><div class="hnav"><button class="hbtn" id="help-prev">Back</button><button class="hbtn primary" id="help-next">Next</button></div></div>
+  </section>
+</div>
